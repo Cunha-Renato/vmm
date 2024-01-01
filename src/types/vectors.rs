@@ -38,6 +38,14 @@ where
     {
         &mut self.data
     }
+    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, T>
+    {
+        self.data.iter()
+    }
+    pub fn iter_mut<'a>(&'a mut self) -> std::slice::IterMut<'a, T>
+    {
+        self.data.iter_mut()
+    }
 }
 impl<T, const N: usize> Index<usize> for VecN<T, N>
 {

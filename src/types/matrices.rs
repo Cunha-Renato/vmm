@@ -3,7 +3,7 @@ pub use math::*;
 
 use core::f64;
 use std::ops::{IndexMut, Index, Add, Sub, Mul};
-use crate::{vec2, vec3, vec4};
+use crate::{vec2, vec3, vec4, vectors};
 use super::{Vec2, Vec3, Vec4, VecN};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -74,6 +74,14 @@ where
         }
 
         result
+    }
+    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, vectors::VecN<T, N>>
+    {
+        self.data.iter()
+    }
+    pub fn iter_mut<'a>(&'a mut self) -> std::slice::IterMut<'a, vectors::VecN<T, N>>
+    {
+        self.data.iter_mut()
     }
 }
 impl<T, const N: usize> Index<usize> for MatN<T, N>
