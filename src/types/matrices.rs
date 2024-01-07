@@ -1,10 +1,8 @@
 pub mod math;
 pub use math::*;
 
-use core::f64;
 use std::ops::{IndexMut, Index, Add, Sub, Mul};
-use crate::{vec2, vec3, vec4, vectors};
-use super::{Vec2, Vec3, Vec4, VecN};
+use crate::{Vec2, Vec3, Vec4, VecN, vec2, vec3, vec4};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct MatN<T, const N: usize>
@@ -75,11 +73,11 @@ where
 
         result
     }
-    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, vectors::VecN<T, N>>
+    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, VecN<T, N>>
     {
         self.data.iter()
     }
-    pub fn iter_mut<'a>(&'a mut self) -> std::slice::IterMut<'a, vectors::VecN<T, N>>
+    pub fn iter_mut<'a>(&'a mut self) -> std::slice::IterMut<'a, VecN<T, N>>
     {
         self.data.iter_mut()
     }
