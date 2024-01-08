@@ -28,9 +28,9 @@ use std::ops::{IndexMut, Index, Add, Sub, Mul, Div};
 ///
 /// # See Also
 ///
-/// - [`MatN`](struct.MatN.html): Matrix type using vectors of fixed size (`VecN`) as rows.
-/// - [`Vec2`](struct.Vec2.html), [`Vec3`](struct.Vec3.html), ...: Specialized vector types
-///   with fixed sizes for 2D, 3D, and higher dimensions.
+/// - [`MatN`](super::matrices::MatN): Matrix type using vectors of fixed size (`VecN`) as rows.
+/// - [`Vec2`], [`Vec3`], [`Vec4`]: Specialized vector types
+///   with fixed sizes for 2D, 3D and 4D. 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct VecN<T, const N: usize>
 where
@@ -360,7 +360,7 @@ where
     ///
     /// # See Also
     ///
-    /// - [`Vec3`](struct.Vec3.html): The 3D vector type used by this method.
+    /// - [`Vec3`]: The 3D vector type used by this method.
     pub fn cross(&self, other: &Self) -> Self
     {
         Self { data: 

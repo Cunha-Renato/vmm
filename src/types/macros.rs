@@ -22,8 +22,8 @@
 ///
 /// # See Also
 ///
-/// - [`Vec2`](struct.Vec2.html): The 2D vector type used by this macro.
-/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
+/// - [`Vec2`](super::vectors::Vec2): The 2D vector type used by this macro.
+/// - [`from_array`](super::vectors::VecN::from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec2 
 {
@@ -54,8 +54,8 @@ macro_rules! vec2
 ///
 /// # See Also
 ///
-/// - [`Vec3`](struct.Vec3.html): The 3D vector type used by this macro.
-/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
+/// - [`Vec3`](super::vectors::Vec3): The 3D vector type used by this macro.
+/// - [`from_array`](super::vectors::VecN::from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec3 
 {
@@ -86,8 +86,8 @@ macro_rules! vec3
 ///
 /// # See Also
 ///
-/// - [`Vec4`](struct.Vec4.html): The 4D vector type used by this macro.
-/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
+/// - [`Vec4`](super::vectors::Vec4): The 4D vector type used by this macro.
+/// - [`from_array`](super::vectors::VecN::from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec4 
 {
@@ -116,8 +116,8 @@ macro_rules! vec4
 ///
 /// # See Also
 ///
-/// - [`Mat2`](struct.Mat2.html): The 2x2 matrix type used by this macro.
-/// - [`from_mat_vec`](fn.from_mat_vec.html): Function to construct a matrix from an array of Vec2.
+/// - [`Mat2`](super::matrices::Mat2): The 2x2 matrix type used by this macro.
+/// - [`from_mat_vec`](super::matrices::MatN::from_mat_vec): Function to construct a matrix from an array of Vec2.
 #[macro_export]
 macro_rules! mat2 
 {
@@ -145,8 +145,8 @@ macro_rules! mat2
 ///
 /// # See Also
 ///
-/// - [`Mat2`](struct.Mat2.html): The 2x2 matrix type used by this macro.
-/// - [`from_mat`](fn.from_mat.html): Function to construct a matrix from a 2D array of elements.
+/// - [`Mat2`](super::matrices::Mat2): The 2x2 matrix type used by this macro.
+/// - [`from_mat`](super::matrices::MatN::from_mat): Function to construct a matrix from a 2D array of elements.
 #[macro_export]
 macro_rules! mat2_raw 
 {
@@ -174,8 +174,8 @@ macro_rules! mat2_raw
 ///
 /// # See Also
 ///
-/// - [`Mat3`](struct.Mat3.html): The 3x3 matrix type used by this macro.
-/// - [`from_mat_vec`](fn.from_mat_vec.html): Function to construct a matrix from an array of Vec3.
+/// - [`Mat3`](super::matrices::Mat3): The 3x3 matrix type used by this macro.
+/// - [`from_mat_vec`](super::matrices::MatN::from_mat_vec): Function to construct a matrix from an array of Vec3.
 #[macro_export]
 macro_rules! mat3 
 {
@@ -203,8 +203,8 @@ macro_rules! mat3
 ///
 /// # See Also
 ///
-/// - [`Mat3`](struct.Mat3.html): The 3x3 matrix type used by this macro.
-/// - [`from_mat`](fn.from_mat.html): Function to construct a matrix from a 2D array of elements.
+/// - [`Mat3`](super::matrices::Mat3): The 3x3 matrix type used by this macro.
+/// - [`from_mat`](super::matrices::MatN::from_mat): Function to construct a matrix from a 2D array of elements.
 #[macro_export]
 macro_rules! mat3_raw 
 {
@@ -233,8 +233,8 @@ macro_rules! mat3_raw
 ///
 /// # See Also
 ///
-/// - [`Mat4`](struct.Mat4.html): The 4x4 matrix type used by this macro.
-/// - [`from_mat_vec`](fn.from_mat_vec.html): Function to construct a matrix from an array of Vec4.
+/// - [`Mat4`](super::matrices::Mat4): The 4x4 matrix type used by this macro.
+/// - [`from_mat_vec`](super::matrices::MatN::from_mat_vec): Function to construct a matrix from an array of Vec4.
 #[macro_export]
 macro_rules! mat4 
 {
@@ -262,8 +262,8 @@ macro_rules! mat4
 /// ```
 /// # See Also
 ///
-/// - [`Mat4`](struct.Mat4.html): The 4x4 matrix type used by this macro.
-/// - [`from_mat`](fn.from_mat.html): Function to construct a matrix from a 2D array of elements.
+/// - [`Mat4`](super::matrices::Mat4): The 4x4 matrix type used by this macro.
+/// - [`from_mat`](super::matrices::MatN::from_mat): Function to construct a matrix from a 2D array of elements.
 #[macro_export]
 macro_rules! mat4_raw 
 {

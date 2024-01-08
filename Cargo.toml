@@ -2,6 +2,8 @@
 name = "vmm"
 version = "0.1.0"
 edition = "2021"
+description = "A math library focused on vectors and square matrices"
+license = "MIT OR Apache-2.0"
 
 [lib]
 name = "vmm"

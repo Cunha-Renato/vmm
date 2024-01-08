@@ -28,8 +28,8 @@ use crate::{Vec2, Vec3, VecN};
 ///
 /// # See Also
 /// 
-/// - [`VecN`](struct.VecN.html)
-/// - [`Mat2`](struct.Mat2.html), [`Mat3`](struct.Mat3.html) and [`Mat4`](struct.Mat4.html).
+/// - [`VecN`].
+/// - [`Mat2`], [`Mat3`] and [`Mat4`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct MatN<T, const N: usize>
 where

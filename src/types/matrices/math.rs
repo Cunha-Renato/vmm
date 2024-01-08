@@ -118,7 +118,7 @@ where
     ///
     /// # See Also
     ///
-    /// - [`VecN`](struct.VecN.html): The vector type used by this method.
+    /// - [`VecN`]: The vector type used by this method.
     fn mul_mat_vec(&self, vec: &VecN<T, N>) -> VecN<T, N>;
 }
 pub trait MatTransforms<T, const N: usize>

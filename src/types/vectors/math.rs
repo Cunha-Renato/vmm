@@ -172,7 +172,7 @@ pub trait Normalize
     ///
     /// # See Also
     ///
-    /// - [`length`](#method.length): Method to compute the Euclidean length of the vector.
+    /// - [`length`](super::VecN::length): Method to compute the Euclidean length of the vector.
     fn normalize(&self) -> Self;    
 }
 impl<T, const N: usize> Normalize for VecN<T, N> 

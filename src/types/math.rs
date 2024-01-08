@@ -27,8 +27,8 @@ pub trait ScalarMath<T>
     ///
     /// # See Also
     ///
-    /// - [`Mat2`](struct.Mat2.html): The matrix type used by the example.
-    /// - [`Vec2`](struct.Vec2.html): The vector type representing rows or columns of the matrix.
+    /// - [`Mat2`](super::matrices::Mat2): The matrix type used by the example.
+    /// - [`Vec2`](super::vectors::Vec2): The vector type representing rows or columns of the matrix.
     fn sum_scalar(&self, value: T) -> Self;
     /// Subtracts a scalar value to each element of self.
     ///
@@ -57,8 +57,8 @@ pub trait ScalarMath<T>
     ///
     /// # See Also
     ///
-    /// - [`Mat2`](struct.Mat2.html): The matrix type used by the example.
-    /// - [`Vec2`](struct.Vec2.html): The vector type representing rows or columns of the matrix.
+    /// - [`Mat2`](super::matrices::Mat2): The matrix type used by the example.
+    /// - [`Vec2`](super::vectors::Vec2): The vector type representing rows or columns of the matrix.
     fn sub_scalar(&self, value: T) -> Self;
     /// Multiply each element of self by a scalar value.
     ///
@@ -87,8 +87,8 @@ pub trait ScalarMath<T>
     ///
     /// # See Also
     ///
-    /// - [`Mat2`](struct.Mat2.html): The matrix type used by the example.
-    /// - [`Vec2`](struct.Vec2.html): The vector type representing rows or columns of the matrix.
+    /// - [`Mat2`](super::matrices::Mat2): The matrix type used by the example.
+    /// - [`Vec2`](super::vectors::Vec2): The vector type representing rows or columns of the matrix.
     fn mul_scalar(&self, value: T) -> Self;
     /// Divides each element of self by a scalar value.
     ///
@@ -117,7 +117,7 @@ pub trait ScalarMath<T>
     ///
     /// # See Also
     ///
-    /// - [`Mat2`](struct.Mat2.html): The matrix type used by the example.
-    /// - [`Vec2`](struct.Vec2.html): The vector type representing rows or columns of the matrix.
+    /// - [`Mat2`](super::matrices::Mat2): The matrix type used by the example.
+    /// - [`Vec2`](super::vectors::Vec2): The vector type representing rows or columns of the matrix.
     fn div_scalar(&self, value: T) -> Self;
 }
