@@ -1,6 +1,6 @@
 # VMM
 
-`vmm` is a Rust crate that provides a collection of types and utilities for mathematical operations, specifically tailored for vectors and matrices. The library is designed to be generic, allowing users to work with vectors and matrices of different dimensions and element types.
+`vmm` is a Rust crate that provides a collection of types and utilities for mathematical operations, specifically tailored for vectors and matrices. The library is designed to be generic, allowing users to work with vectors and square matrices of different dimensions and element types.
 
 ## Features
 
@@ -13,7 +13,6 @@
 ## Examples
 
 ```rust
-# use vmm::*;
 
 // Creating a 2D vector
 let vector_2d = Vec2::<i32>::new();
