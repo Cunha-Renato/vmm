@@ -42,7 +42,7 @@
 //!
 //! ## License
 //!
-//! This crate is licensed under the MIT License - see the [LICENSE](https://github.com/your_username/my_library/blob/main/LICENSE) file for details.
+//! This crate is licensed under the MIT License or Apache-2.0.
 
 pub mod types;
 pub mod utils;
