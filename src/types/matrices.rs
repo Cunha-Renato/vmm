@@ -2,10 +2,39 @@ pub mod math;
 pub use math::*;
 
 use std::ops::{IndexMut, Index, Add, Sub, Mul};
-use crate::{Vec2, Vec3, Vec4, VecN, vec2, vec3, vec4};
+use crate::{Vec2, Vec3, VecN};
 
+/// Generic object representing a mathematical square matrix, with elements of type `T` and a fixed size `N`.
+///
+/// # Type Parameters
+///
+/// - `T`: The type of each element in the matrix.
+/// - `N`: The fixed size of the matrix.
+///
+/// # Examples
+///
+/// ```
+/// # use vmm::*;
+/// let empty_mat: MatN<i32, 2> = MatN::new();
+/// let filled_mat: MatN<f64, 2>= MatN::new_with(3.1415);
+/// 
+/// assert_eq!(empty_mat.to_mat(), [[0, 0], [0, 0]]);
+/// assert_eq!(filled_mat.to_mat(), [[3.1415, 3.1415], [3.1415, 3.1415]]);
+/// ```
+///
+/// # Notes
+///
+/// - Uses the type VecN as its rows.
+///
+/// # See Also
+/// 
+/// - [`VecN`].
+/// - [`Mat2`], [`Mat3`] and [`Mat4`].
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct MatN<T, const N: usize>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     data: [VecN<T, N>; N]    
 }
@@ -14,18 +43,117 @@ where
     T: Default + Copy,
     f64: From<T>
 {
+    /// Creates a new instance of the `MatN` object with default values for each element.
+    ///
+    /// This function initializes a new matrix of fixed size `N` with each element set to its default value.
+    ///
+    /// # Returns
+    ///
+    /// A new `MatN` instance with elements initialized to their default values.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mat = MatN::<f64, 2>::new();
+    ///
+    /// assert_eq!(mat.to_mat(), [[0.0, 0.0], [0.0, 0.0]]);
+    /// ```
+    ///
+    /// # Notes
+    ///
+    /// - The default value for each element is determined by the `Default` trait implementation for `T`.
+    /// - The size of the matrix is fixed at compile time based on the constant `N`.
     pub fn new() -> Self
     {
         Self { data: [VecN::default(); N] }
     }
+    
+    /// Creates a new instance of the `MatN` object with `value` as the value for each element.
+    ///
+    /// This function initializes a new matrix of fixed size `N` with each element set to its default value.
+    ///
+    /// # Arguments
+    ///
+    /// * `value` - The value to initialize the `VecN` with.
+    ///
+    /// # Returns
+    ///
+    /// A new `MatN` instance with elements initialized to `value`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    /// let mat = MatN::<f64, 3>::new_with(6.9);
+    /// 
+    /// assert_eq!(mat.to_mat(), [[6.9, 6.9, 6.9], [6.9, 6.9, 6.9], [6.9, 6.9, 6.9]]);
+    /// ```
+    ///
+    /// # Notes
+    ///
+    /// - The size of the matrix is fixed at compile time based on the constant `N`.
     pub fn new_with(value: T) -> Self
     {
         Self { data: [VecN::new_with(value); N] } 
     }
+
+    /// This function constructs a new matrix of fixed size `N` using the elements from the provided
+    /// array of `VecN` reference `data`.
+    ///
+    /// # arguments
+    ///
+    /// * `data` - a reference to an array containing `VecN` to initialize the matrix.
+    ///
+    /// # returns
+    ///
+    /// a new `MatN` instance with elements copied from the provided array.
+    ///
+    /// # examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    /// let array = [vec2![1.2, 4.20], vec2![6.0, 9.0]];
+    /// let mat = MatN::from_mat_vec(&array);
+    /// 
+    /// assert_eq!(mat.to_mat_vec(), &array);
+    /// ```
+    ///
+    /// # notes
+    ///
+    /// - the size of the matrix is fixed at compile time based on the constant `N`.
     pub fn from_mat_vec(data: &[VecN<T, N>; N]) -> Self
     {
         Self { data: *data }
     }
+
+    /// This function constructs a new matrix of fixed size `N` using the elements from the provided
+    /// 2D array reference `data`.
+    ///
+    /// # arguments
+    ///
+    /// * `data` - a reference to a 2D array to initialize the matrix.
+    ///
+    /// # returns
+    ///
+    /// a new `MatN` instance with elements copied from the provided array.
+    ///
+    /// # examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    /// let array = [[1.2, 4.20], [6.0, 9.0]];
+    /// let mat = MatN::from_mat(&array);
+    /// 
+    /// assert_eq!(mat.to_mat(), array);
+    /// ```
+    ///
+    /// # notes
+    ///
+    /// - the size of the matrix is fixed at compile time based on the constant `N`.
+    /// - This function creates a new `MatN` with copied elements, leaving the original 2D array unchanged 
+    /// - maybe a little more expensive than `from_mat_vec()`.
     pub fn from_mat(data: &[[T; N]; N]) -> Self
     {
         let mut result = Self::new();
@@ -37,14 +165,55 @@ where
         
         result
     }
+    
+    /// Returns a reference to the underlying 2D array.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mat = mat2_raw![[4, 3], [1, 2]];
+    /// 
+    /// assert_eq!(mat.to_mat_vec(), &[vec2![4, 3], vec2![1, 2]]);
+    /// ```
     pub fn to_mat_vec(&self) -> &[VecN<T, N>; N]
     {
         &self.data
     }
+
+    /// Returns a mutable reference to the underlying 2D array.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mut mat = mat2_raw![[4, 3], [1, 2]];
+    /// mat.to_mut_mat_vec()[0][1] = 180;
+    /// 
+    /// assert_eq!(mat.to_mat_vec(), &[vec2![4, 180], vec2![1, 2]]);
+    /// ```
     pub fn to_mut_mat_vec(&mut self) -> &mut [VecN<T, N>; N]
     {
         &mut self.data
     }
+    
+    /// Returns a `copy` of the underlying raw 2D array.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mat = mat2_raw![[4, 3], [1, 2]];
+    /// 
+    /// assert_eq!(mat.to_mat(), [[4, 3], [1, 2]]);
+    /// ```
+    ///
+    /// # Notes
+    /// 
+    /// - More expensive than `to_mat_vec`.
     pub fn to_mat(&self) -> [[T; N]; N]
     {
         let mut result = [[T::default(); N]; N];
@@ -56,10 +225,60 @@ where
         
         result
     }
+    
+    /// Fills all elements of `MatN` with `value`.
+    ///
+    /// # Arguments
+    ///
+    /// * `value` - The value to fill the vector with.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mut mat = mat2_raw![[1.0, 3.0], [2.0, 4.0]];
+    /// mat.fill(42.0);
+    /// 
+    /// assert_eq!(mat.to_mat(), [[42.0, 42.0], [42.0, 42.0]]);
+    /// ```
+    ///
+    /// # Notes
+    ///
+    /// - This method directly delegates to the `fill` method of the underlying array.
+    ///
+    /// # See Also
+    ///
+    /// - [`fill`](https://doc.rust-lang.org/std/primitive.array.html#method.fill): The standard library method
+    ///   used internally to fill the underlying array.
     pub fn fill(&mut self, value: T)
     {
-        *self = Self::new_with(value); 
+        self.data.fill(VecN::new_with(value));
     }
+
+    /// Transposes the matrix, swapping rows with columns.
+    ///
+    /// The transpose of a matrix is obtained by swapping its rows and columns.
+    ///
+    /// # Returns
+    ///
+    /// A new matrix representing the transpose of the original matrix.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use vmm::*;
+    ///
+    /// let mat = mat2_raw![[1.0, 2.0], [3.0, 4.0]];
+    ///
+    /// assert_eq!(mat.transpose().to_mat(), [[1.0, 3.0], [2.0, 4.0]]);
+    /// ```
+    ///
+    /// # Notes
+    ///
+    /// - The transpose operation swaps the positions of each element across the main diagonal of the matrix.
+    /// - This method assumes that the element type `T` implements `Clone` to create a new matrix.
+    /// - This has a time complexity of `O(n^2)`.
     pub fn transpose(&self) -> Self
     {
         let mut result = self.clone();
@@ -82,7 +301,28 @@ where
         self.data.iter_mut()
     }
 }
+impl<T, const N: usize> Identity for MatN<T, N>
+where
+    T: Default + Copy + From<i32>,
+    f64: From<T>
+{
+    fn identity() -> Self 
+    {
+        let mut result = MatN::new();
+        let one = Into::<T>::into(1);
+        
+        for i in 0..N
+        {
+            result[i][i] = one;
+        }
+        
+        result
+    }
+}
 impl<T, const N: usize> Index<usize> for MatN<T, N>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = VecN<T, N>; 
     
@@ -92,6 +332,9 @@ impl<T, const N: usize> Index<usize> for MatN<T, N>
     }
 }
 impl<T, const N: usize> IndexMut<usize> for MatN<T, N>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output 
     {
@@ -111,7 +354,8 @@ where
 
 impl<T: Add<Output = T>, const N: usize> Add for MatN<T, N>
 where
-    T: Default + Copy
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = Self;
 
@@ -129,7 +373,8 @@ where
 }
 impl<T: Sub<Output = T>, const N: usize> Sub for MatN<T, N>
 where
-    T: Default + Copy
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = Self;
 
@@ -196,64 +441,9 @@ pub type Mat2<T> = MatN<T, 2>;
 pub type Mat3<T> = MatN<T, 3>;
 pub type Mat4<T> = MatN<T, 4>;
 
-impl<T> Identity for Mat2<T>
-where
-    T: Default + Copy + From<f64>,
-    f64: From<T>
-{
-    fn identity() -> Self 
-    {
-        let zero = T::default();
-        let one = Into::<T>::into(1.0);
-        Mat2 {
-            data: [
-                vec2![one, zero],
-                vec2![zero, one]
-            ]     
-        }
-    }
-}
-impl<T> Identity for Mat3<T>
-where
-    T: Default + Copy + From<f64>,
-    f64: From<T>
-{
-    fn identity() -> Self 
-    {
-        let zero = T::default();
-        let one = Into::<T>::into(1.0);
-        Mat3 {
-            data: [
-                vec3![one, zero, zero],
-                vec3![zero, one, zero],
-                vec3![zero, zero, one]
-            ]     
-        }
-    }
-}
-impl<T> Identity for Mat4<T>
-where
-    T: Default + Copy + From<f64>,
-    f64: From<T>
-{
-    fn identity() -> Self 
-    {
-        let zero = T::default();
-        let one = Into::<T>::into(1.0);
-        Mat4 {
-            data: [
-                vec4![one, zero, zero, zero],
-                vec4![zero, one, zero, zero],
-                vec4![zero, zero, one, zero],
-                vec4![zero, zero, zero, one]
-            ]     
-        }
-    }
-}
-
 impl<T> MatTransforms<T, 2> for Mat3<T>
 where
-    T: Default + Copy + From<f64> + Into<f64> 
+    T: Default + Copy + From<f64> + Into<f64> + From<i32> 
         + std::ops::Neg<Output = T>
         + std::ops::Add<Output = T>
         + std::ops::Mul<Output = T>,
@@ -313,7 +503,7 @@ where
 }
 impl<T> MatTransforms<T, 3> for Mat4<T>
 where
-    T: Default + Copy + From<f64> + Into<f64> 
+    T: Default + Copy + From<f64> + Into<f64> + From<i32>
         + std::ops::Neg<Output = T>
         + std::ops::Add<Output = T>
         + std::ops::Mul<Output = T>,
