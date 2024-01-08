@@ -1,15 +1,93 @@
+/// Macro for creating a 2D vector (`Vec2`) using a concise syntax.
+///
+/// # Syntax
+///
+/// The `vec2!` macro accepts a comma-separated list of values, representing the elements of
+/// a 2D vector. It constructs a `Vec2` instance using the provided values.
+///
+/// # Examples
+///
+/// ```
+/// # use vmm::*;
+/// let vec = vec2![1.0, 2.0];
+/// 
+/// assert_eq!(vec.to_arr(), &[1.0, 2.0]);
+/// ```
+///
+/// # Notes
+///
+/// - The macro internally uses the `from_array` function to create the vector.
+/// - Ensure that the provided expressions are suitable for initializing a 2D vector.
+/// - The resulting `Vec2` struct will be created using the `from_array` function.
+///
+/// # See Also
+///
+/// - [`Vec2`](struct.Vec2.html): The 2D vector type used by this macro.
+/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec2 
 {
     ($($e:expr),*) => (Vec2::from_array(&[$($e),*]));
 }
 
+/// Macro for creating a 3D vector (`Vec3`) using a concise syntax.
+///
+/// # Syntax
+///
+/// The `vec3!` macro accepts a comma-separated list of values, representing the elements of
+/// a 3D vector. It constructs a `Vec3` instance using the provided values.
+///
+/// # Examples
+///
+/// ```
+/// # use vmm::*;
+/// let vec = vec3![1.0, 2.0, 3.0];
+/// 
+/// assert_eq!(vec.to_arr(), &[1.0, 2.0, 3.0]);
+/// ```
+///
+/// # Notes
+///
+/// - The macro internally uses the `from_array` function to create the vector.
+/// - Ensure that the provided expressions are suitable for initializing a 3D vector.
+/// - The resulting `Vec3` struct will be created using the `from_array` function.
+///
+/// # See Also
+///
+/// - [`Vec3`](struct.Vec3.html): The 3D vector type used by this macro.
+/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec3 
 {
     ($($e:expr),*) => (Vec3::from_array(&[$($e),*]));
 }
 
+/// Macro for creating a 4D vector (`Vec4`) using a concise syntax.
+///
+/// # Syntax
+///
+/// The `vec4!` macro accepts a comma-separated list of values, representing the elements of
+/// a 4D vector. It constructs a `Vec4` instance using the provided values.
+///
+/// # Examples
+///
+/// ```
+/// # use vmm::*;
+/// let vec = vec4![1.0, 2.0, 3.0, 4.0];
+/// 
+/// assert_eq!(vec.to_arr(), &[1.0, 2.0, 3.0, 4.0]);
+/// ```
+///
+/// # Notes
+///
+/// - The macro internally uses the `from_array` function to create the vector.
+/// - Ensure that the provided expressions are suitable for initializing a 4D vector.
+/// - The resulting `Vec4` struct will be created using the `from_array` function.
+///
+/// # See Also
+///
+/// - [`Vec4`](struct.Vec4.html): The 4D vector type used by this macro.
+/// - [`from_array`](#method.from_array): Function to construct a vector from an array.
 #[macro_export]
 macro_rules! vec4 
 {

@@ -98,17 +98,17 @@ where
         Self { data: [value; N] }
     }
     /// This function constructs a new vector of fixed size `N` using the elements from the provided
-    /// array reference `data`. The elements of the array are copied to initialize the vector.
+    /// array reference `data`. the elements of the array are copied to initialize the vector.
     ///
-    /// # Arguments
+    /// # arguments
     ///
-    /// * `data` - A reference to an array containing elements to initialize the vector.
+    /// * `data` - a reference to an array containing elements to initialize the vector.
     ///
-    /// # Returns
+    /// # returns
     ///
-    /// A new `VecN` instance with elements copied from the provided array.
+    /// a new `VecN` instance with elements copied from the provided array.
     ///
-    /// # Examples
+    /// # examples
     ///
     /// ```
     /// # use vmm::*;
@@ -118,7 +118,7 @@ where
     /// assert_eq!(vec.to_arr(), &array);
     /// ```
     ///
-    /// # Notes
+    /// # notes
     ///
     /// - The size of the vector is fixed at compile time based on the constant `N`.
     /// - This function creates a new `VecN` with copied elements, leaving the original array unchanged.
@@ -141,7 +141,7 @@ where
     /// let mut vec = VecN::<f64, 3>::new();
     /// vec.fill(42.0);
     /// 
-    /// assert_eq!(vec.to_arr(), &[42.0, 42.0, 42.0])
+    /// assert_eq!(vec.to_arr(), &[42.0, 42.0, 42.0]);
     /// ```
     ///
     /// # Notes
@@ -164,10 +164,9 @@ where
     /// ```
     /// # use vmm::*;
     ///
-    /// let mut vec = VecN::<f64, 3>::new();
-    /// vec.fill(42.0);
+    /// let vec = vec3![4, 2, 0];
     /// 
-    /// assert_eq!(vec.to_arr(), &[42.0, 42.0, 42.0])
+    /// assert_eq!(vec.to_arr(), &[4, 2, 0]);
     /// ```
     pub fn to_arr(&self) -> &[T; N]
     {
