@@ -7,7 +7,8 @@ where
         + std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
-        + std::ops::Div<Output = T>
+        + std::ops::Div<Output = T>,
+    f64: From<T>   
 {
     fn sum_scalar(&self, value: T) -> Self 
     {
@@ -60,10 +61,16 @@ pub trait Identity
     fn identity() -> Self;
 }
 pub trait MatVecMath<T, const N: usize>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     fn mul_mat_vec(&self, vec: &VecN<T, N>) -> VecN<T, N>;
 }
 pub trait MatTransforms<T, const N: usize>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     fn translate(&self, vec: &VecN<T, N>) -> Self;
     fn rotate(&self, angle: f64, axis: &Vec3<T>) -> Self;

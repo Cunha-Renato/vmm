@@ -11,7 +11,7 @@
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 ///
 /// let degrees = 90.0;
 /// let radians = to_radians(degrees);
@@ -35,7 +35,7 @@ pub fn to_radians(value: f64) -> f64
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// 
 /// let radians = 1.5707963267948966;
 /// let degrees = to_degrees(radians);

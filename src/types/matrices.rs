@@ -6,6 +6,9 @@ use crate::{Vec2, Vec3, Vec4, VecN, vec2, vec3, vec4};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct MatN<T, const N: usize>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     data: [VecN<T, N>; N]    
 }
@@ -83,6 +86,9 @@ where
     }
 }
 impl<T, const N: usize> Index<usize> for MatN<T, N>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = VecN<T, N>; 
     
@@ -92,6 +98,9 @@ impl<T, const N: usize> Index<usize> for MatN<T, N>
     }
 }
 impl<T, const N: usize> IndexMut<usize> for MatN<T, N>
+where
+    T: Default + Copy,
+    f64: From<T>
 {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output 
     {
@@ -111,7 +120,8 @@ where
 
 impl<T: Add<Output = T>, const N: usize> Add for MatN<T, N>
 where
-    T: Default + Copy
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = Self;
 
@@ -129,7 +139,8 @@ where
 }
 impl<T: Sub<Output = T>, const N: usize> Sub for MatN<T, N>
 where
-    T: Default + Copy
+    T: Default + Copy,
+    f64: From<T>
 {
     type Output = Self;
 

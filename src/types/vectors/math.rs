@@ -8,6 +8,7 @@ where
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
         + std::ops::Div<Output = T>,
+    f64: From<T>
 {
     fn sum_scalar(&self, value: T) -> Self 
     {
@@ -66,6 +67,7 @@ where
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
         + std::ops::Div<Output = T>,
+    f64: From<T>
 {
     fn dot(&self, other: &Self) -> f64
     {
@@ -100,6 +102,7 @@ where
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
         + std::ops::Div<Output = T>,
+    f64: From<T>
 {
     fn normalize(&self) -> Self 
     {

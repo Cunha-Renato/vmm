@@ -30,7 +30,7 @@ macro_rules! vec4
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat2![vec2![1, 2], vec2![4, 3]];
 ///
 /// assert_eq!(mat, Mat2::from_mat_vec(&[vec2![1, 2], vec2![4, 3]]));
@@ -59,7 +59,7 @@ macro_rules! mat2
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat2_raw![[1, 2], [4, 3]];
 ///
 /// assert_eq!(mat, Mat2::from_mat(&[[1, 2], [4, 3]]));
@@ -88,7 +88,7 @@ macro_rules! mat2_raw
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat3![vec3![1, 2, 3], vec3![6, 5, 4], vec3![7, 8, 9]];
 ///
 /// assert_eq!(mat, Mat3::from_mat_vec(&[vec3![1, 2, 3], vec3![6, 5, 4], vec3![7, 8, 9]]));
@@ -117,7 +117,7 @@ macro_rules! mat3
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat3_raw![[1, 2, 3], [6, 5, 4], [7, 8, 9]];
 ///
 /// assert_eq!(mat, Mat3::from_mat(&[[1, 2, 3], [6, 5, 4], [7, 8, 9]]));
@@ -147,7 +147,7 @@ macro_rules! mat3_raw
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat4![vec4![1, 2, 3, 4], vec4![8, 7, 6, 5], vec4![9, 10, 11, 12], vec4![16, 15, 14, 13]];
 ///
 /// assert_eq!(mat, Mat4::from_mat_vec(&[vec4![1, 2, 3, 4], vec4![8, 7, 6, 5], vec4![9, 10, 11, 12], vec4![16, 15, 14, 13]]));
@@ -177,7 +177,7 @@ macro_rules! mat4
 /// # Example
 ///
 /// ```
-/// use vmm::*;
+/// # use vmm::*;
 /// let mat = mat4_raw![[1, 2, 3, 4], [8, 7, 6, 5], [9, 10, 11, 12], [16, 15, 14, 13]];
 ///
 /// assert_eq!(mat, Mat4::from_mat(&[[1, 2, 3, 4], [8, 7, 6, 5], [9, 10, 11, 12], [16, 15, 14, 13]]));
