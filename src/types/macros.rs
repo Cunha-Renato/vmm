@@ -27,7 +27,7 @@
 #[macro_export]
 macro_rules! vec2 
 {
-    ($($e:expr),*) => (Vec2::from_array(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Vec2::from_array(&[$($e),*]));
 }
 
 /// Macro for creating a 3D vector (`Vec3`) using a concise syntax.
@@ -59,7 +59,7 @@ macro_rules! vec2
 #[macro_export]
 macro_rules! vec3 
 {
-    ($($e:expr),*) => (Vec3::from_array(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Vec3::from_array(&[$($e),*]));
 }
 
 /// Macro for creating a 4D vector (`Vec4`) using a concise syntax.
@@ -91,7 +91,7 @@ macro_rules! vec3
 #[macro_export]
 macro_rules! vec4 
 {
-    ($($e:expr),*) => (Vec4::from_array(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Vec4::from_array(&[$($e),*]));
 }
 
 /// Macro for creating a 2x2 matrix (`Mat2`) using a concise syntax.
@@ -121,7 +121,7 @@ macro_rules! vec4
 #[macro_export]
 macro_rules! mat2 
 {
-    ($($e:expr),*) => (Mat2::from_mat_vec(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat2::from_mat_vec(&[$($e),*]));
 }
 /// Macro for creating a 2x2 matrix (`Mat2`) using a concise syntax.
 ///
@@ -150,7 +150,7 @@ macro_rules! mat2
 #[macro_export]
 macro_rules! mat2_raw 
 {
-    ($($e:expr),*) => (Mat2::from_mat(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat2::from_mat(&[$($e),*]));
 }
 /// Macro for creating a 3x3 matrix (`Mat3`) using a concise syntax.
 ///
@@ -179,7 +179,7 @@ macro_rules! mat2_raw
 #[macro_export]
 macro_rules! mat3 
 {
-    ($($e:expr),*) => (Mat3::from_mat_vec(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat3::from_mat_vec(&[$($e),*]));
 }
 /// Macro for creating a 3x3 matrix (`Mat3`) using a concise syntax.
 ///
@@ -208,7 +208,7 @@ macro_rules! mat3
 #[macro_export]
 macro_rules! mat3_raw 
 {
-    ($($e:expr),*) => (Mat3::from_mat(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat3::from_mat(&[$($e),*]));
 }
 
 /// Macro for creating a 4x4 matrix (`Mat4`) using a concise syntax.
@@ -238,7 +238,7 @@ macro_rules! mat3_raw
 #[macro_export]
 macro_rules! mat4 
 {
-    ($($e:expr),*) => (Mat4::from_mat_vec(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat4::from_mat_vec(&[$($e),*]));
 }
 
 /// Macro for creating a 4x4 matrix (`Mat4`) using a concise syntax.
@@ -267,5 +267,5 @@ macro_rules! mat4
 #[macro_export]
 macro_rules! mat4_raw 
 {
-    ($($e:expr),*) => (Mat4::from_mat(&[$($e),*]));
+    ($($e:expr),*) => (vmm::Mat4::from_mat(&[$($e),*]));
 }
