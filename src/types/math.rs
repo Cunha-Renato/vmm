@@ -121,3 +121,207 @@ pub trait ScalarMath<T>
     /// - [`Vec2`](super::vectors::Vec2): The vector type representing rows or columns of the matrix.
     fn div_scalar(&self, value: T) -> Self;
 }
+
+pub trait Sqrrt {
+    fn sqrrt(&self) -> Self;
+}
+impl Sqrrt for f32 {
+    fn sqrrt(&self) -> Self {
+        self.sqrt()
+    }
+}
+impl Sqrrt for f64 {
+    fn sqrrt(&self) -> Self {
+        self.sqrt()
+    } 
+}
+
+pub trait UnitValue {
+    fn unit_value() -> Self;
+}
+impl UnitValue for i8 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for i16 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for i32 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for i64 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for i128 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for isize {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for u8 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for u16 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for u32 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for u64 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for u128 {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for usize {
+    fn unit_value() -> Self {
+        1
+    } 
+}
+impl UnitValue for f32 {
+    fn unit_value() -> Self {
+        1.0_f32
+    } 
+}
+impl UnitValue for f64 {
+    fn unit_value() -> Self {
+        1.0_f64
+    } 
+}
+
+pub trait SinCosTan {
+    fn coss(&self) -> Self;
+    fn sinn(&self) -> Self;
+    fn tann(&self) -> Self;
+}
+impl SinCosTan for i8 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as i8
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as i8
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as i8
+    }
+}
+impl SinCosTan for i16 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as i16
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as i16
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as i16
+    }
+}
+impl SinCosTan for i32 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as i32
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as i32
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as i32
+    }
+}
+impl SinCosTan for i64 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as i64
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as i64
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as i64
+    }
+}
+impl SinCosTan for u8 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as u8
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as u8
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as u8
+    }
+}
+impl SinCosTan for u16 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as u16
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as u16
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as u16
+    }
+}
+impl SinCosTan for u32 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as u32
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as u32
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as u32
+    }
+}
+impl SinCosTan for u64 {
+    fn coss(&self) -> Self {
+        (*self as f64).cos() as u64
+    }
+    fn sinn(&self) -> Self {
+        (*self as f64).cos() as u64
+    } 
+    fn tann(&self) -> Self {
+        (*self as f64).cos() as u64
+    }
+}
+impl SinCosTan for f32 {
+    fn coss(&self) -> Self {
+        self.cos() 
+    }
+    fn sinn(&self) -> Self {
+        self.sin()
+    } 
+    fn tann(&self) -> Self {
+        self.tan()
+    }
+}
+impl SinCosTan for f64 {
+    fn coss(&self) -> Self {
+        self.cos() 
+    }
+    fn sinn(&self) -> Self {
+        self.sin()
+    } 
+    fn tann(&self) -> Self {
+        self.tan()
+    }
+}

@@ -2,7 +2,7 @@ pub mod math;
 pub use math::*;
 
 use std::ops::{IndexMut, Index, Add, Sub, Mul};
-use crate::{Vec2, Vec3, VecN};
+use crate::{SinCosTan, UnitValue, Vec2, Vec3, VecN};
 
 /// Generic object representing a mathematical square matrix, with elements of type `T` and a fixed size `N`.
 ///
@@ -34,14 +34,12 @@ use crate::{Vec2, Vec3, VecN};
 pub struct MatN<T, const N: usize>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     data: [VecN<T, N>; N]    
 }
 impl<T, const N: usize> MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     /// Creates a new instance of the `MatN` object with default values for each element.
     ///
@@ -301,28 +299,27 @@ where
         self.data.iter_mut()
     }
 }
+
 impl<T, const N: usize> Identity for MatN<T, N>
 where
-    T: Default + Copy + From<i32>,
-    f64: From<T>
+    T: Default + Copy + UnitValue,
 {
     fn identity() -> Self 
     {
         let mut result = MatN::new();
-        let one = Into::<T>::into(1);
-        
+         
         for i in 0..N
         {
-            result[i][i] = one;
+            result[i][i] = T::unit_value();
         }
         
         result
     }
 }
+
 impl<T, const N: usize> Index<usize> for MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = VecN<T, N>; 
     
@@ -331,20 +328,20 @@ where
         &self.data[index]     
     }
 }
+
 impl<T, const N: usize> IndexMut<usize> for MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output 
     {
         &mut self.data[index]     
     }
 }
+
 impl<T, const N: usize> Default for MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     fn default() -> Self 
     {
@@ -355,7 +352,6 @@ where
 impl<T: Add<Output = T>, const N: usize> Add for MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
 
@@ -374,7 +370,6 @@ where
 impl<T: Sub<Output = T>, const N: usize> Sub for MatN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
 
@@ -393,7 +388,6 @@ where
 impl<T: Mul<Output = T>, const N: usize> Mul for MatN<T, N>
 where
     T: Default + Copy + std::ops::Add<Output = T>,
-    f64: From<T>
 {
     type Output = Self; 
     
@@ -419,7 +413,6 @@ where
     T: Default + Copy
         + std::ops::Mul<Output = T>
         + std::ops::Add<Output = T>,
-    f64: From<T>
 {
     fn mul_mat_vec(&self, vec: &VecN<T, N>) -> VecN<T, N> 
     {
@@ -443,11 +436,10 @@ pub type Mat4<T> = MatN<T, 4>;
 
 impl<T> MatTransforms<T, 2> for Mat3<T>
 where
-    T: Default + Copy + From<f64> + Into<f64> + From<i32> 
+    T: Default + Copy + UnitValue + SinCosTan
         + std::ops::Neg<Output = T>
         + std::ops::Add<Output = T>
         + std::ops::Mul<Output = T>,
-    f64: From<T>
 {
     fn translate(&self, vec: &Vec2<T>) -> Self 
     {
@@ -457,18 +449,18 @@ where
         
         result
     }
-    fn rotate(&self, angle: f64, axis: &Vec3<T>) -> Self 
+    fn rotate(&self, angle: T, axis: &Vec3<T>) -> Self 
     {
-        let x_angle: f64 = axis[0].into() * angle; 
-        let y_angle: f64 = axis[1].into() * angle;
-        let z_angle: f64 = axis[2].into() * angle;
+        let x_angle = axis[0] * angle; 
+        let y_angle = axis[1] * angle;
+        let z_angle = axis[2] * angle;
 
-        let x_cos: T = x_angle.cos().into();
-        let x_sin: T = x_angle.sin().into();
-        let y_cos: T = y_angle.cos().into();
-        let y_sin: T = y_angle.sin().into();
-        let z_cos: T = z_angle.cos().into();
-        let z_sin: T = z_angle.sin().into();
+        let x_cos = x_angle.coss();
+        let x_sin = x_angle.sinn();
+        let y_cos = y_angle.coss();
+        let y_sin = y_angle.sinn();
+        let z_cos = z_angle.coss();
+        let z_sin = z_angle.sinn();
 
         let mut x_mat = Mat3::identity();
         x_mat[1][1] = x_cos;
@@ -503,11 +495,10 @@ where
 }
 impl<T> MatTransforms<T, 3> for Mat4<T>
 where
-    T: Default + Copy + From<f64> + Into<f64> + From<i32>
+    T: Default + Copy + UnitValue + SinCosTan
         + std::ops::Neg<Output = T>
         + std::ops::Add<Output = T>
         + std::ops::Mul<Output = T>,
-    f64: From<T>
 {
     fn translate(&self, vec: &Vec3<T>) -> Self 
     {
@@ -518,18 +509,18 @@ where
         
         result
     }
-    fn rotate(&self, angle: f64, axis: &Vec3<T>) -> Self 
+    fn rotate(&self, angle: T, axis: &Vec3<T>) -> Self 
     {
-        let x_angle: f64 = axis[0].into() * angle; 
-        let y_angle: f64 = axis[1].into() * angle;
-        let z_angle: f64 = axis[2].into() * angle;
+        let x_angle = axis[0] * angle; 
+        let y_angle = axis[1] * angle;
+        let z_angle = axis[2] * angle;
 
-        let x_cos: T = x_angle.cos().into();
-        let x_sin: T = x_angle.sin().into();
-        let y_cos: T = y_angle.cos().into();
-        let y_sin: T = y_angle.sin().into();
-        let z_cos: T = z_angle.cos().into();
-        let z_sin: T = z_angle.sin().into();
+        let x_cos = x_angle.coss();
+        let x_sin = x_angle.sinn();
+        let y_cos = y_angle.coss();
+        let y_sin = y_angle.sinn();
+        let z_cos = z_angle.coss();
+        let z_sin = z_angle.sinn();
 
         let mut x_mat = Mat4::identity();
         x_mat[1][1] = x_cos;

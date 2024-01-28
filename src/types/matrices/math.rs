@@ -3,12 +3,11 @@ use crate::types::{math::*, vectors::{VecN, Vec3}};
 
 impl<T, const N: usize> ScalarMath<T> for MatN<T, N>
 where 
-    T: Default + Copy + Into<f64>
+    T: Default + Copy
         + std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
         + std::ops::Div<Output = T>,
-    f64: From<T>   
 {
     fn sum_scalar(&self, value: T) -> Self 
     {
@@ -85,7 +84,6 @@ pub trait Identity
 pub trait MatVecMath<T, const N: usize>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     /// Multiplies the matrix by a vector.
     ///
@@ -124,12 +122,11 @@ where
 pub trait MatTransforms<T, const N: usize>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     /// Creates a `translation` matrix and multiplies with `self`, it is dependent on the matrix dimension. 
     fn translate(&self, vec: &VecN<T, N>) -> Self;
     /// Creates a `rotation` matrix and multiplies with `self`, it is dependent on the matrix dimension.
-    fn rotate(&self, angle: f64, axis: &Vec3<T>) -> Self;
+    fn rotate(&self, angle: T, axis: &Vec3<T>) -> Self;
     /// Creates a `scaling` matrix and multiplies with `self`, it is dependent on the matrix dimension.
     fn scale(&self, values: &Vec3<T>) -> Self;
 }

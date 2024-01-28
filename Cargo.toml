@@ -1,9 +1,9 @@
 [package]
 name = "vmm"
-version = "0.1.2"
+version = "0.2.0"
 edition = "2021"
 description = "A math library focused on vectors and square matrices"
-license = "MIT"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/Cunha-Renato/vmm" 
 
 [lib]
@@ -11,3 +11,4 @@ name = "vmm"
 crate-type = ["lib"]
 
 [dependencies]
+bytemuck = "1.14.1"

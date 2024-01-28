@@ -35,15 +35,12 @@ use std::ops::{IndexMut, Index, Add, Sub, Mul, Div};
 pub struct VecN<T, const N: usize>
 where
     T: Default + Copy,
-    f64: From<T>
 {
-    data: [T; N]
+    pub(crate) data: [T; N]
 }
 impl<T, const N: usize> VecN<T, N>
 where 
     T: Default + Copy,
-    f64: From<T>
-
 {
     /// Creates a new instance of the `VecN` object with default values for each element.
     ///
@@ -203,7 +200,6 @@ where
 impl<T, const N: usize> Index<usize> for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = T;    
     
@@ -215,7 +211,6 @@ where
 impl<T, const N: usize> IndexMut<usize> for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output 
     {
@@ -225,7 +220,6 @@ where
 impl<T, const N: usize> Default for VecN<T, N>
 where 
     T: Default + Copy,
-    f64: From<T>
 {
     fn default() -> Self 
     {
@@ -237,7 +231,6 @@ where
 impl<T: Add<Output = T>, const N: usize> Add for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
     
@@ -256,7 +249,6 @@ where
 impl<T: Sub<Output = T>, const N: usize> Sub for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
     
@@ -275,7 +267,6 @@ where
 impl<T: Mul<Output = T>, const N: usize> Mul for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
     
@@ -294,7 +285,6 @@ where
 impl<T: Div<Output = T>, const N: usize> Div for VecN<T, N>
 where
     T: Default + Copy,
-    f64: From<T>
 {
     type Output = Self;
     
@@ -320,7 +310,6 @@ where
     T: Default + Copy
     + std::ops::Mul<Output = T>
     + std::ops::Sub<Output = T>,
-    f64: From<T>
 {
     /// Computes the cross product of two 3D vectors.
     ///

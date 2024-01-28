@@ -3,12 +3,11 @@ use crate::types::math::*;
 
 impl<T, const N: usize> ScalarMath<T> for VecN<T, N>
 where
-    T: Default + Copy + Into<f64>
+    T: Default + Copy 
         + std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
         + std::ops::Div<Output = T>,
-    f64: From<T>
 {
     fn sum_scalar(&self, value: T) -> Self 
     {
@@ -84,7 +83,7 @@ pub trait VecMath<T>
     ///
     /// - Both input vectors are need to be of the same dimension.
     /// - This method assumes that the element type `T` can be converted into `f64`.
-    fn dot(&self, other: &Self) -> f64;
+    fn dot(&self, other: &Self) -> T;
 
     /// Computes the Euclidean length (magnitude) of the vector.
     ///
@@ -110,37 +109,38 @@ pub trait VecMath<T>
     ///
     /// - The length is computed using the formula: `sqrt(a^2 + b^2 + c^2 + ...)`.
     /// - This method assumes that the element type `T` can be converted into `f64`.
-    fn length(&self) -> f64;
+    fn length(&self) -> T;
 }
 impl<T, const N: usize> VecMath<T> for VecN<T, N>
 where
-    T: Default + Copy + Into<f64>
+    T: Default + Copy
+        + Sqrrt
         + std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
-        + std::ops::Div<Output = T>,
-    f64: From<T>
+        + std::ops::Div<Output = T>
+        + std::iter::Sum,
 {
-    fn dot(&self, other: &Self) -> f64
+    fn dot(&self, other: &Self) -> T
     {
         self.data.iter()
             .zip(other.data.iter())
             .map(|(&a, &b)|
             {
-                Into::<f64>::into(a) * Into::<f64>::into(b)
+                a * b
             })
             .sum()
     }
-    fn length(&self) -> f64
+    fn length(&self) -> T
     {
         self.data.iter()
             .map(|&val|
             {
-                let n = Into::<f64>::into(val);
+                let n = val;
                 n*n
             }) 
-            .sum::<f64>()
-            .sqrt()
+            .sum::<T>()
+            .sqrrt()
     } 
 }
 pub trait Normalize 
@@ -177,12 +177,13 @@ pub trait Normalize
 }
 impl<T, const N: usize> Normalize for VecN<T, N> 
 where
-    T: Default + Copy + Into<f64> + From<f64>
+    T: Default + Copy
+        + Sqrrt
         + std::ops::Add<Output = T>
         + std::ops::Sub<Output = T>
         + std::ops::Mul<Output = T>
-        + std::ops::Div<Output = T>,
-    f64: From<T>
+        + std::ops::Div<Output = T>
+        + std::iter::Sum,
 {
     fn normalize(&self) -> Self 
     {
@@ -191,7 +192,7 @@ where
 
         for val in result.data.iter_mut()
         {
-            *val = (Into::<f64>::into(*val)/len).into();
+            *val = *val/len;
         }
 
         result 
