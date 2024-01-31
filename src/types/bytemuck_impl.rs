@@ -9,7 +9,7 @@ where
     T: Default + marker::Copy,
     f64: From<T> {}
 
-unsafe impl<T, const N: usize> bytemuck::AnyBitPattern for VecN<T, N> 
+unsafe impl<T, const N: usize> bytemuck::Pod for VecN<T, N> 
 where
     T: Default + marker::Copy + 'static,
     f64: From<T> {}
@@ -18,8 +18,7 @@ unsafe impl<T, const N: usize> Zeroable for MatN<T, N>
 where 
     T: Default + marker::Copy,
     f64: From<T> {}
-
-unsafe impl<T, const N: usize> bytemuck::AnyBitPattern for MatN<T, N> 
+unsafe impl<T, const N: usize> bytemuck::Pod for MatN<T, N>
 where
     T: Default + marker::Copy + 'static,
     f64: From<T> {}
