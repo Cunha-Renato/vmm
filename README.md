@@ -1,5 +1,9 @@
-# VMM
+## This crate is not being maintained
+I bit more than I could chew, and I was not smart enough to keep going.
+Maybe in the future I will revisit this one, but for now just stick with
+`nalgebra` or `cgmath`.
 
+# VMM
 `vmm` is a Rust crate that provides a collection of types and utilities for mathematical operations, specifically tailored for vectors and matrices. The library is designed to be generic, allowing users to work with vectors and square matrices of different dimensions and element types.
 
 ## Features
