@@ -2,7 +2,7 @@ macro_rules! first {
     () => {
         #[inline(always)]
         pub const fn x(&self) -> T {
-            self.0[0]
+            self.0[0][0]
         }
 
         #[inline(always)]
@@ -16,9 +16,9 @@ macro_rules! second {
     () => {
         #[inline(always)]
         pub const fn y(&self) -> T {
-            self.0[1]
+            self.0[0][1]
         }
-        
+
         #[inline(always)]
         pub const fn g(&self) -> T {
             self.y()
@@ -40,7 +40,7 @@ macro_rules! third {
     () => {
         #[inline(always)]
         pub const fn z(&self) -> T {
-            self.0[2]
+            self.0[0][2]
         }
 
         #[inline(always)]
@@ -64,7 +64,7 @@ macro_rules! fourth {
     () => {
         #[inline(always)]
         pub const fn w(&self) -> T {
-            self.0[3]
+            self.0[0][3]
         }
 
         #[inline(always)]

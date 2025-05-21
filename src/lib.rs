@@ -1,9 +1,7 @@
 extern crate num_traits;
 
 #[macro_use]
-mod implement;
-#[macro_use]
 mod swizzle;
 
-pub mod vector;
-pub use vector::*;
+pub mod matrix;
+pub use matrix::*;
