@@ -2,9 +2,12 @@
 name = "vmm"
 version = "0.2.0"
 edition = "2021"
-description = "A math library focused on vectors and square matrices"
+description = "A math library focused on linear algebra"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Cunha-Renato/vmm" 
+
+[workspace]
+members = ["dev"]
 
 [lib]
 name = "vmm"
@@ -12,3 +15,9 @@ crate-type = ["lib"]
 
 [dependencies]
 num-traits = "0.2"
+rayon = { version = "1", optional = true }
+
+[features]
+default = []
+simd = []
+rayon = ["dep:rayon"]
