@@ -1,8 +1,10 @@
-use vmm::{Matrix, MatrixOps};
+use vmm::{mul_other, transpose, transpose_square};
 
 fn main() {
-    let mut a = Matrix::from_slice(2, 3, &[1, 2, 3 ,4, 5, 6]);
-    println!("{a:#?}");
-    a.transpose_assign();
+    let mut a = [1, 2, 5, 6];
+    let mut b = [1, 2, 3, 4, 5, 6];
+
+    let c = transpose_square(&mut a, 2);
+
     println!("{a:#?}");
 }
